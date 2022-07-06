@@ -1,7 +1,8 @@
-﻿using AxGrid.Base;
+﻿using UnityEngine;
+using AxGrid;
+using AxGrid.Base;
 using AxGrid.Model;
 using AxGrid.Path;
-using UnityEngine;
 
 namespace TaskFSM
 {
@@ -30,7 +31,11 @@ namespace TaskFSM
                 .EasingLinear(1f, 0, 1, f =>
                 {
                     transform.localPosition = Vector3.Lerp(from, to, f);
-                });
+                }).Action(()=>
+                {
+                    Settings.Invoke("OnMoveDone");
+                }
+                );
         }
     }
 }
